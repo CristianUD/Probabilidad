@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Ejercicio Probabilidad</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script>
+		MathJax = {
+			tex: { inlineMath: [['$', '$']] }
+		};
+	</script>
+
+</head>
+
+<body>
+	<header>
+		<img id="logo" src="UD.png" alt="Escudo UD">
+		<nav>
+			<ul>
+				<li><a href="#combinatoria-form">2023 - 1 - 425 - 81 - PROBABILIDAD</a></li>
+			</ul>
+		</nav>
+	</header>
+
+
+	<h1 style="margin-bottom: 10px; text-align: left; padding-left: 1em;">EJERCICIO PROBABILIDAD</h1>
+	<div class="center problema">
+		<p>El Consejo Asesor de Relaciones Humanas de Gainesville, Florida, consideró la queja de una mujer que alegaba
+			discriminación, basada en su género, de parte de una empresa local. El Consejo está compuesto por hombres y
+			mujeres, todas las mujeres votaron a favor de la quejosa y todos los hombres en contra.
+			<br>El abogado que representaba a la compañía apeló la decisión del Consejo reclamando sesgo de género de
+			parte de los miembros del Consejo. Si no hubo sesgo de género entre los miembros del Consejo, podría ser
+			razonable
+			hacer conjeturas de que sería probable que cualquier grupo de n miembros votara a favor de la quejosa
+			como lo haría cualquier otro grupo de n miembros. Si éste fuera el caso, ¿cuál es la probabilidad de que el
+			voto
+			se dividiera por líneas de género (con todos los hombres en contra y las mujeres a favor)?
+
+		</p>
+	</div>
+	<h2>Primer Paso: Calcular el <i>Espacio Muestral</i></h2>
+
+	<table></table>
+	<form id="combinatoria-form">
+		<label for="n-input">Miembros del Consejo Asesor:</label>
+		<input type="number" id="n-input" required>
+		<label for="r-input">Miembros Mujeres a Favor:</label>
+		<input type="number" id="r-input" required>
+		<button type="submit" onclick="update()">Calcular</button>
+	</form>
+	<div id="resultado" class="result"></div>
+	<script>
+
+		const formulario = document.querySelector('#combinatoria-form');
+		const resultadoDiv = document.querySelector('#resultado');
+
+		formulario.addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			const n = parseInt(document.querySelector('#n-input').value);
+			const r = parseInt(document.querySelector('#r-input').value);
+
+			if (isNaN(n) || isNaN(r)) {
+				resultadoDiv.innerHTML = 'Los valores de n y r deben ser números enteros positivos.';
+				return;
+			}
+
+			if (n < 0 || r < 0 || r > n) {
+				resultadoDiv.innerHTML = 'Los valores de n y r deben ser números enteros positivos con r menor o igual que n.';
+				return;
+			}
+
+			const combinaciones = calcularCombinaciones(n, r);
+			const probabilidad = (1 / combinaciones) * 100;
+			resultadoDiv.innerHTML = `Número de combinaciones: ${combinaciones}<br>Probabilidad: ${probabilidad.toFixed(2)}%`;
+
+		});
+
+
+		function calcularCombinaciones(n, r) {
+			var numerador = 1;
+			var denominador = 1;
+
+			for (var i = 0; i < r; i++) {
+				numerador *= n - i;
+				denominador *= i + 1;
+			}
+
+			return numerador / denominador;
+		}
+
+
+	</script>
+	<div id="resultado" class="result"></div>
+
+	<table>
+		<tr>
+			<td>
+				${\huge n^c r = \frac{n!}{(n-r)!r!} }$
+			<td class="ecuacion">
+				${\huge n^c r =}$
+			</td>
+
+			<td class="ecuacion">
+				<div id="valores">
+
+				</div>
+			</td>
+
+			<td>
+				<canvas id="miGrafica"></canvas>
+				<script>
+					var grafica = document.getElementById("miGrafica");
+					var data = {
+						labels: [
+							"Miembros en Contra",
+							"Candidatos Mujeres a Favor"
+						],
+						datasets: [
+							{
+								data: [0, 0],
+								backgroundColor: [
+									"#FF6384",
+									"#63FF84",
+								]
+							}]
+					};
+
+					var pastel = new Chart(grafica, {
+						type: 'pie',
+						data: data,
+						options: {
+							color: '#000000'
+						}
+					});
+
+					function update() {
+						if (isNaN(n) || isNaN(r)) {
+							return;
+						}
+
+						if (n < 0 || r < 0 || r > n) {
+							return;
+						}
+						const n = parseInt(document.querySelector('#n-input').value);
+						const r = parseInt(document.querySelector('#r-input').value);
+						const fraccion = document.querySelector('#valores');
+						const solucion = document.querySelector('#solucion');
+						const espacioMuestral = document.querySelector('#espacio');
+						const final = document.querySelector('#final');
+
+						var formula = "${\\huge \\frac{" + n + "!}{(" + n + "-" + r + ")!" + r + "!} }$"
+						fraccion.innerHTML = formula;
+						var combinaciones = calcularCombinaciones(n, r);
+						solucion.innerHTML = combinaciones;
+						espacioMuestral.innerHTML = combinaciones;
+						final.innerHTML = ((1 / combinaciones) * 100).toFixed(3) + "%";
+
+						data.datasets[0] = {
+							data: [n - r, r],
+							backgroundColor: [
+								"#FF6384",
+								"#63FF84",
+							]
+						}
+						pastel.update();
+						MathJax.typeset();
+						console.log(formula);
+					}
+
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size:medium;">
+				Donde n es el numero de personas en el grupo y
+				<br>r son las que necesitamos elegir
+			</td>
+			<td class="ecuacion"> ${\huge n^c r =}$ </td>
+			<td class="ecuacion">
+				<div id="solucion" style="font-size: 30px; font-family: cursive;">
+
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<h2><i>Probabilidad final, Espacio Muestral y Cardinalidad</i></h2>
+	<table>
+		<tr>
+			<td class="ecuacion"> ${\huge \#S = }$</td>
+			<td class="ecuacion">
+				<div id="espacio" style="font-size: 30px; font-family: cursive"></div>
+			</td>
+		</tr>
+		<tr>
+			<td> ${\huge \#A = 1}$</td>
+			<td style="font-size: medium;">La cardinalidad de nuestro evento es 1,
+				<br>ya que es la unica probabilidad entre todas de sacar el numero
+				<br>de mujeres estipulado
+			</td>
+		</tr>
+		<tr>
+			<td class="ecuacion"> ${\huge P(A) = }$</td>
+			<td class="ecuacion">
+				<div id="final" style="font-size: 30px; font-family: cursive;"></div>
+			</td>
+		</tr>
+	</table>
+	<p>Al obtener el resultado de la combinación, logramos continuar con la fórmula de la probabilidad de A, remplazando
+		variables, teniendo en cuenta que la cardinalidad en este caso sería igual a 1, debido a que el suceso de todas
+		mujeres estén a favor y todos los hombres en contra solo pasaría 1 vez.</p>
+
+	<h3>Ejercicio N°2.63 Sección 2, propuesto en <i>Wackerly,Mendenhall y Scheaffer (2010,p.
+			50-51).</i>
+		<br>Inspirado en el trabajo: Nicolas A Diaz M (20201020130) Estudiante Universidad Distrital
+		<br>Contacto: <i><a href="mailto:niadiazm@correo.udistrital.edu.co">niadiazm@correo.udistrital.edu.co</a></i>
+	</h3>
+	<h4>Cristian Camilo Marroquin Sanchez, Estudiantes Ingeniería De Sistemas
+		<br>Código: <i>20201005019</i>
+	</h4>
+</body>
+
+</html>

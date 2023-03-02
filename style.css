@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px !important;
+}
+
+h2 {
+    margin-top: 1em;
+    font-size: 20px !important;
+    padding: 1em;
+}
+h3{
+    padding-left: 1em;
+    font-size: medium;
+}
+h4{
+    padding-left: 1em;
+    font-size: small;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    background-color: #c2c6ce;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+}
+
+button {
+    background-color: #751fe6;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 10px !important;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #751fe673;
+}
+
+canvas {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+    padding-left: 4em;
+    padding-right: 4em;
+    text-align: center;
+}
+
+a {
+    text-decoration: unset;
+    color: #000000 !important;
+}
+
+p {
+    margin: 1em;
+    padding-top: 1em;
+    padding-left: 4em;
+    padding-right: 4em;
+    text-align: justify;
+}
+
+.result {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.problema {
+    border: 3px solid #253557 !important;
+    border-radius: 10px !important;
+    margin-left: 4em;
+    margin-right: 4em;
+    margin-top: 1em;
+    background-color: #c8c8ff59;
+
+}
+
+.ecuacion {
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+header {
+    background-color: #e74c4c;
+    color: aliceblue !important;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    width: auto;
+    position: sticky;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+header img {
+    height: 80px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
