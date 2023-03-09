@@ -43,14 +43,34 @@
 	</div>
 	<h2>Primer Paso: Calcular el <i>Espacio Muestral</i></h2>
 
-	<table></table>
-	<form id="combinatoria-form">
-		<label for="n-input">Miembros del Consejo Asesor:</label>
-		<input type="number" id="n-input" required>
-		<label for="r-input">Miembros Mujeres a Favor:</label>
-		<input type="number" id="r-input" required>
-		<button type="submit" onclick="update()">Calcular</button>
-	</form>
+	<table>
+		<form id="combinatoria-form" style="width: 250px !important;">
+			<tr>
+				<td>
+					La Combinatoria es una herramienta que nos permite contar
+					<br>
+					el número de situaciones que se pueden dar al someter
+					<br>
+					a un conjunto finito a las acciones de ordenar y/o elegir entre sus
+					elementos.<sub> 1</sub>
+
+					<h3 style="color:rgb(184, 6, 6)">Caracteristicas <br></h3>
+					<ol>
+						<li style="text-align: left;">No se consideran todos los elementos.</li>
+						<li style="text-align: left;">El orden no importa.</li>
+						<li style="text-align: left;">No se repiten los elementos. </li>
+					</ol>
+				</td>
+				<td>
+					<label for="n-input">Miembros del Consejo Asesor:</label>
+					<input type="number" id="n-input" required><br>
+					<label for="r-input">Miembros Mujeres a Favor:</label>
+					<input type="number" id="r-input" required>
+					<button type="submit" onclick="update()">Calcular</button>
+				</td>
+			</tr>
+		</form>
+	</table>
 	<div id="resultado" class="result"></div>
 	<script>
 
@@ -94,20 +114,19 @@
 
 
 	</script>
-	<div id="resultado" class="result"></div>
 
 	<table>
 		<tr>
 			<td>
 				${\huge n^c r = \frac{n!}{(n-r)!r!} }$
+			</td>
+
 			<td class="ecuacion">
 				${\huge n^c r =}$
 			</td>
 
 			<td class="ecuacion">
-				<div id="valores">
-
-				</div>
+				<div id="valores"></div>
 			</td>
 
 			<td>
@@ -137,14 +156,8 @@
 						}
 					});
 
-					function update() {
-						if (isNaN(n) || isNaN(r)) {
-							return;
-						}
 
-						if (n < 0 || r < 0 || r > n) {
-							return;
-						}
+					function update() {
 						const n = parseInt(document.querySelector('#n-input').value);
 						const r = parseInt(document.querySelector('#r-input').value);
 						const fraccion = document.querySelector('#valores');
@@ -152,8 +165,29 @@
 						const espacioMuestral = document.querySelector('#espacio');
 						const final = document.querySelector('#final');
 
+						if (isNaN(n) || isNaN(r)) {
+							fraccion.innerHTML = "";
+							solucion.innerHTML = "";
+							espacioMuestral.innerHTML = "";
+							final.innerHTML = "";
+							pastel.clear();
+							pastel.destroy();
+							return;
+						}
+
+						if (n < 0 || r < 0 || r > n) {
+							fraccion.innerHTML = "";
+							solucion.innerHTML = "";
+							espacioMuestral.innerHTML = "";
+							final.innerHTML = "";
+							pastel.clear();
+							pastel.destroy();
+							return;
+						}
+
 						var formula = "${\\huge \\frac{" + n + "!}{(" + n + "-" + r + ")!" + r + "!} }$"
 						fraccion.innerHTML = formula;
+
 						var combinaciones = calcularCombinaciones(n, r);
 						solucion.innerHTML = combinaciones;
 						espacioMuestral.innerHTML = combinaciones;
@@ -168,7 +202,6 @@
 						}
 						pastel.update();
 						MathJax.typeset();
-						console.log(formula);
 					}
 
 				</script>
@@ -214,14 +247,21 @@
 		variables, teniendo en cuenta que la cardinalidad en este caso sería igual a 1, debido a que el suceso de todas
 		mujeres estén a favor y todos los hombres en contra solo pasaría 1 vez.</p>
 
-	<h3>Ejercicio N°2.63 Sección 2, propuesto en <i>Wackerly,Mendenhall y Scheaffer (2010,p.
-			50-51).</i>
-		<br>Inspirado en el trabajo: Nicolas A Diaz M (20201020130) Estudiante Universidad Distrital
-		<br>Contacto: <i><a href="mailto:niadiazm@correo.udistrital.edu.co">niadiazm@correo.udistrital.edu.co</a></i>
-	</h3>
-	<h4>Cristian Camilo Marroquin Sanchez, Estudiantes Ingeniería De Sistemas
-		<br>Código: <i>20201005019</i>
-	</h4>
+	<footer>
+		<h3>Ejercicio N°2.63 Sección 2, propuesto en <i>Wackerly,Mendenhall y Scheaffer (2010,p.
+				50-51).</i>
+			<br>Inspirado en el trabajo: Nicolas A Diaz M (20201020130) Estudiante Universidad Distrital
+			<br>Contacto: <i><a
+					href="mailto:niadiazm@correo.udistrital.edu.co">niadiazm@correo.udistrital.edu.co</a></i>
+		</h3>
+		<sub>1</sub>(2023) Consultado de: <i><a
+				href="https://www.unirioja.es/talleres/creatividad_matematica/SeminarioBachillerato/COMBINATORIA.pdf">Combinatoria
+				(Resumen)</a></i>
+
+		<h4>Cristian Camilo Marroquin Sanchez, Estudiantes Ingeniería De Sistemas
+			<br>Código: <i>20201005019</i>
+		</h4>
+	</footer>
 </body>
 
 </html>
