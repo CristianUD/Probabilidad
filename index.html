@@ -46,7 +46,7 @@
 	<table>
 		<form id="combinatoria-form" style="width: 250px !important;">
 			<tr>
-				<td>
+				<td style="font-size: large;">
 					La Combinatoria es una herramienta que nos permite contar
 					<br>
 					el número de situaciones que se pueden dar al someter
@@ -54,7 +54,7 @@
 					a un conjunto finito a las acciones de ordenar y/o elegir entre sus
 					elementos.<sub> 1</sub>
 
-					<h3 style="color:rgb(184, 6, 6)">Caracteristicas <br></h3>
+					<h3 style="color:rgb(184, 6, 6)">Características <br></h3>
 					<ol>
 						<li style="text-align: left;">No se consideran todos los elementos.</li>
 						<li style="text-align: left;">El orden no importa.</li>
@@ -114,11 +114,13 @@
 
 
 	</script>
-
+	<hr size="1" color="black">
+	<h1>Solución al Problema</h1>
 	<table>
 		<tr>
 			<td>
 				${\huge n^c r = \frac{n!}{(n-r)!r!} }$
+				<sub>2</sub>
 			</td>
 
 			<td class="ecuacion">
@@ -170,8 +172,16 @@
 							solucion.innerHTML = "";
 							espacioMuestral.innerHTML = "";
 							final.innerHTML = "";
-							pastel.clear();
-							pastel.destroy();
+							
+							data.datasets[0] = {
+							data: [0, 0],
+							backgroundColor: [
+								"#FF6384",
+								"#63FF84",
+							]
+						}
+						pastel.update();
+						MathJax.typeset();
 							return;
 						}
 
@@ -180,8 +190,16 @@
 							solucion.innerHTML = "";
 							espacioMuestral.innerHTML = "";
 							final.innerHTML = "";
-							pastel.clear();
-							pastel.destroy();
+
+							data.datasets[0] = {
+							data: [0, 0],
+							backgroundColor: [
+								"#FF6384",
+								"#63FF84",
+							]
+						}
+						pastel.update();
+						MathJax.typeset();
 							return;
 						}
 
@@ -209,8 +227,8 @@
 		</tr>
 		<tr>
 			<td style="font-size:medium;">
-				Donde n es el numero de personas en el grupo y
-				<br>r son las que necesitamos elegir
+				Donde <b>n</b> es el número de personas en el grupo y
+				<br><b>r</b> son las que necesitamos elegir
 			</td>
 			<td class="ecuacion"> ${\huge n^c r =}$ </td>
 			<td class="ecuacion">
@@ -221,7 +239,7 @@
 		</tr>
 	</table>
 
-	<h2><i>Probabilidad final, Espacio Muestral y Cardinalidad</i></h2>
+	<h2><i>Probabilidad Final, Espacio Muestral y Cardinalidad</i></h2>
 	<table>
 		<tr>
 			<td class="ecuacion"> ${\huge \#S = }$</td>
@@ -232,7 +250,7 @@
 		<tr>
 			<td> ${\huge \#A = 1}$</td>
 			<td style="font-size: medium;">La cardinalidad de nuestro evento es 1,
-				<br>ya que es la unica probabilidad entre todas de sacar el numero
+				<br>ya que es la única probabilidad entre todas de sacar el número
 				<br>de mujeres estipulado
 			</td>
 		</tr>
@@ -247,6 +265,7 @@
 		variables, teniendo en cuenta que la cardinalidad en este caso sería igual a 1, debido a que el suceso de todas
 		mujeres estén a favor y todos los hombres en contra solo pasaría 1 vez.</p>
 
+	<hr size="1" color="black">
 	<footer>
 		<h3>Ejercicio N°2.63 Sección 2, propuesto en <i>Wackerly,Mendenhall y Scheaffer (2010,p.
 				50-51).</i>
@@ -254,11 +273,21 @@
 			<br>Contacto: <i><a
 					href="mailto:niadiazm@correo.udistrital.edu.co">niadiazm@correo.udistrital.edu.co</a></i>
 		</h3>
+		Referencias:
+		<br>
 		<sub>1</sub>(2023) Consultado de: <i><a
 				href="https://www.unirioja.es/talleres/creatividad_matematica/SeminarioBachillerato/COMBINATORIA.pdf">Combinatoria
-				(Resumen)</a></i>
+				(Resumen)</a></i><br>
+		<sub>2</sub>(2023) Obtenido de: <i><a
+				href="https://flexbooks.ck12.org/cbook/ck-12-conceptos-de-%C3%A1lgebra-nivel-b%C3%A1sico-en-espa%C3%B1ol/section/
+				7.9/primary/lesson/probabilidad-y-combinaciones-%3A%3Aof%3A%3A-probabilidad-y-combinaciones-%3A%3Aof%3A%3A-ck-12-
+				conceptos-b%C3%A1sicos-de-%C3%A1lgebra-bsc-alg-spn/">
+				Probabilidad y Combinaciones </a> </i>
 
-		<h4>Cristian Camilo Marroquin Sanchez, Estudiantes Ingeniería De Sistemas
+		<br>
+		<h4>
+			Autor:
+			Cristian Camilo Marroquin Sanchez, Estudiantes Ingeniería De Sistemas
 			<br>Código: <i>20201005019</i>
 		</h4>
 	</footer>
